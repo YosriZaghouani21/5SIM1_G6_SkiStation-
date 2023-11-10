@@ -38,7 +38,7 @@ The project is built with Maven and the application is packaged in a Docker imag
 The project is deployed on a Jenkins server and the code is analyzed with SonarQube.
 
 ## Team Members
-- [Yosri Zaghouani]: Module
+- [Yosri Zaghouani]() : Module
 - [Baheddine Lakhzouri]() : Module 
 - [Leith Hassayoun]() : Module 
 - [Marya Belgith]() : Module 
