@@ -10,7 +10,7 @@
     </parent>
     <groupId>tn.esprit.ds</groupId>
     <artifactId>SkiStationProject</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>SkiStationProject</name>
     <description>SkiStationProject</description>
     <properties>
@@ -72,7 +72,4 @@
             <url>http://192.168.33.113:8081/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
-
-
-
 </project>
