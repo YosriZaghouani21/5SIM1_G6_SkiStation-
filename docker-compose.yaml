@@ -1,0 +1,30 @@
+version: '3'
+services:
+  mysql:
+    image: 'mysql:5.7'
+    container_name: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: SkiStationDB
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+
+  # Spring Boot Application Service
+  spring-app:
+    image: yosri69/skistation:ImageSpringboot
+    container_name: spring
+    restart:  on-failure
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/SkiStationDB?createDatabaseIfNotExist=true&useUnicode=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:
+    ports:
+      - "9090:9090"
+    depends_on:
+      - mysql
+
+volumes:
+  db :
