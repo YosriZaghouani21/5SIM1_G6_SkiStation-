@@ -1,4 +1,4 @@
-package tn.esprit.SkiStationProject;
+package tn.esprit.spring;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.MethodOrderer;
@@ -9,21 +9,17 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import tn.esprit.SkiStationProject.entities.Instructor;
-import tn.esprit.SkiStationProject.services.IInstructorServices;
-
-
+import tn.esprit.spring.entities.Instructor;
+import tn.esprit.spring.services.IInstructorServices;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 @ExtendWith(SpringExtension.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest
 @Slf4j
-public class InstructorJunitService {
-
+class JunitTest {
     @Autowired
     private IInstructorServices iInstructorServices;
 

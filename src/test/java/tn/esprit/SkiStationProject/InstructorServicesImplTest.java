@@ -1,34 +1,30 @@
-package tn.esprit.SkiStationProject;
+package tn.esprit.spring;
 
-import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
-import tn.esprit.SkiStationProject.entities.Instructor;
-import tn.esprit.SkiStationProject.repositories.InstructorRepository;
-import tn.esprit.SkiStationProject.services.InstructorServicesImpl;
+import tn.esprit.spring.entities.Instructor;
+import tn.esprit.spring.repositories.ICourseRepository;
+import tn.esprit.spring.repositories.IInstructorRepository;
+import tn.esprit.spring.services.IInstructorServices;
+import tn.esprit.spring.services.InstructorServicesImpl;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
-
-
-
-
+import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class InstructorMockitouTest {
+class InstructorServicesImplTest {
 
     @Mock
-    private InstructorRepository instructorRepository;
+    private IInstructorRepository instructorRepository;
 
     @InjectMocks
     private InstructorServicesImpl instructorServices;
@@ -38,7 +34,7 @@ public class InstructorMockitouTest {
     @Order(0)
     public void testAddInstructor() {
 
-        Instructor instructorToAdd = new Instructor(1, "Test", null);
+        Instructor instructorToAdd = new Instructor(1L, "Test");
         when(instructorRepository.save(instructorToAdd)).thenReturn(instructorToAdd);
 
         Instructor result = instructorServices.addInstructor(instructorToAdd);
@@ -50,7 +46,7 @@ public class InstructorMockitouTest {
     @Test
     @Order(1)
     public void testUpdateInstructor() {
-        Instructor instructorToUpdate = new Instructor(1, "Test", null);
+        Instructor instructorToUpdate = new Instructor(1L, "Test");
         when(instructorRepository.save(instructorToUpdate)).thenReturn(instructorToUpdate);
 
         Instructor result = instructorServices.updateInstructor(instructorToUpdate);
@@ -63,8 +59,8 @@ public class InstructorMockitouTest {
     public void testRetrieveAllInstructor() {
 
         List<Instructor> instructors = Arrays.asList(
-                new Instructor(1, "Test1", null),
-                new Instructor(2, "Test2", null)
+                new Instructor(1L, "Test1"),
+                new Instructor(2L, "Test2")
         );
         when(instructorRepository.findAll()).thenReturn(instructors);
 
@@ -72,7 +68,6 @@ public class InstructorMockitouTest {
 
         assertEquals(instructors, result);
     }
-
 
 
 }
