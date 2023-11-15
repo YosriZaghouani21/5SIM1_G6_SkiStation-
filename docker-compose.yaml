@@ -1,31 +1,41 @@
-version: '3'
+version: "3.8"
 services:
-  mysql:
-    image: 'mysql:5.7'
-    container_name: mysql
-    restart: unless-stopped
+
+  skistation:
+    container_name: skistation
+    image: skistation
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "8089:8089"
+    restart: on-failure
     environment:
-      MYSQL_DATABASE: SkiStationDB
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/SkiStationDB?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ""
+      spring.jpa.hibernate.ddl-auto : update
+      spring.jpa.properties.hibernate.dialect : org.hibernate.dialect.MySQL5Dialect
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+    depends_on:
+      - mysqldb
+    volumes:
+      - .m2:/root/.m2
+
+
+
+  mysqldb:
+    image: "mysql:5.7"
+    container_name: mysql-container
+    environment:
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_DATABASE=SkiStationDB
     ports:
       - "3306:3306"
+    restart: unless-stopped
     volumes:
       - db:/var/lib/mysql
 
-  # Spring Boot Application Service
-  spring-app:
-    image: yosri69/skistation:ImageSpringboot
-    container_name: spring
-    restart: on-failure
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/SkiStationDB?createDatabaseIfNotExist=true&useUnicode=true
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD:
-    ports:
-      - "8089:8089"
-    depends_on:
-      - mysql
 
 volumes:
-  db:
-    external: true
+  db :
