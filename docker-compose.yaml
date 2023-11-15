@@ -16,9 +16,9 @@ services:
   spring-app:
     image: yosri69/skistation:ImageSpringboot
     container_name: spring
-    restart:  on-failure
+    restart: on-failure
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/SkiStationDB?createDatabaseIfNotExist=true&useUnicode=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/SkiStationDB?createDatabaseIfNotExist=true&useUnicode=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD:
     ports:
@@ -27,4 +27,6 @@ services:
       - mysql
 
 volumes:
-  db :
+  db:
+    external: true
+    driver: local
