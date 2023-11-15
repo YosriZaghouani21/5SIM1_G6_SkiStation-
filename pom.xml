@@ -10,7 +10,7 @@
     </parent>
     <groupId>tn.esprit.ds</groupId>
     <artifactId>SkiStationProject</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>SkiStationProject</name>
     <description>SkiStationProject</description>
     <properties>
@@ -71,6 +71,14 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>9</source>
+                    <target>9</target>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <!-- Deploy to Nexus -->
@@ -82,4 +90,3 @@
         </repository>
     </distributionManagement>
 </project>
-
